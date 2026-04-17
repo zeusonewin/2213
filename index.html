@@ -29,7 +29,7 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
             
-            /* СОВРЕМЕННЫЙ КРИПТО-ФОН: Сетка Web3 и абстрактное свечение (без логотипов) */
+            /* СОВРЕМЕННЫЙ КРИПТО-ФОН */
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(255, 184, 0, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.03) 0%, transparent 40%),
@@ -63,7 +63,7 @@
         }
         .hero p { color: var(--text-dim); font-size: clamp(1rem, 3vw, 1.25rem); max-width: 800px; margin: 0 auto; font-weight: 300; }
 
-        /* ПОЧЕМУ МЫ (ОБОСНОВАНИЕ) */
+        /* ПОЧЕМУ МЫ */
         .why-us { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 120px; }
         .why-card {
             background: var(--surface); border: 1px solid var(--border);
@@ -84,11 +84,15 @@
         }
         .card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
+        /* ЛОГОТИПЫ (Исправлено) */
         .logo-wrap {
-            width: 130px; height: 130px; background: #000; border-radius: 30px;
+            width: 130px; height: 130px; 
+            background: rgba(255, 255, 255, 0.03); /* Убрали грубый черный */
+            border-radius: 50%; /* Сделали круглыми */
             border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
         }
-        .logo-wrap img { width: 70%; object-fit: contain; }
+        .logo-wrap img { width: 60%; height: 60%; object-fit: contain; }
 
         .info h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.8rem, 4vw, 32px); margin-bottom: 12px; }
         .info p { margin-bottom: 25px; color: var(--text-dim); }
@@ -115,7 +119,7 @@
             border: 1px solid var(--border); font-size: 14px; font-weight: 600;
         }
 
-        /* FAQ - КРАСИВЫЙ И В ШИРИНУ КОНТЕЙНЕРА */
+        /* FAQ */
         .faq { padding: 120px 0; width: 100%; }
         .faq h2 { font-family: 'Unbounded', sans-serif; text-align: center; margin-bottom: 60px; font-size: clamp(1.8rem, 5vw, 32px); }
         
@@ -141,15 +145,37 @@
 
         footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); color: #334155; font-size: 12px; }
 
-        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ */
+        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ (Сильно улучшено) */
         @media (max-width: 1000px) {
-            .card { grid-template-columns: 1fr; text-align: center; padding: 30px; gap: 30px; }
-            .logo-wrap { margin: 0 auto; width: 100px; height: 100px; }
-            .tags { justify-content: center; }
-            .hero { padding-top: 140px; }
-            .why-us { margin-bottom: 60px; }
-            summary { padding: 20px; }
-            .faq-content { padding: 0 20px 20px; padding-top: 15px; }
+            /* Фикс тикера для мобилок - прижимаем к верху и даем высоту под двухстрочный вид */
+            .ticker-header { 
+                top: 0; width: 100%; max-width: 100%; height: 72px; 
+                border-radius: 0; border-left: none; border-right: none; border-top: none; 
+            }
+            
+            .hero { padding-top: 110px; padding-bottom: 40px; }
+            .hero h1 { letter-spacing: -1px; margin-bottom: 15px; }
+            
+            .why-us { margin-bottom: 60px; grid-template-columns: 1fr; }
+            .why-card { padding: 25px; }
+
+            /* Компактные карточки бирж */
+            .card { grid-template-columns: 1fr; text-align: center; padding: 25px 20px; gap: 20px; border-radius: 24px; }
+            .logo-wrap { margin: 0 auto; width: 90px; height: 90px; }
+            .info h2 { font-size: 24px; margin-bottom: 8px; }
+            .info p { margin-bottom: 15px; font-size: 14px; }
+            
+            .tags { justify-content: center; gap: 8px; }
+            .tag { font-size: 12px; padding: 6px 12px; }
+            
+            /* Аккуратные кнопки */
+            .actions { gap: 10px; }
+            .btn-gold, .btn-outline { padding: 16px; font-size: 13px; border-radius: 16px; }
+
+            .faq { padding: 60px 0; }
+            .faq h2 { margin-bottom: 30px; }
+            summary { padding: 20px; font-size: 15px; }
+            .faq-content { padding: 0 20px 20px; padding-top: 15px; font-size: 14px; }
         }
     </style>
 </head>
