@@ -8,6 +8,9 @@
     <meta name="description" content="Независимый рейтинг криптобирж 2026. Мы выбрали лучшие криптобиржи: минимальные комиссии, отсутствие санкций и бонусы до $5000. Весь топ криптобирж в одном месте.">
     <link rel="icon" type="image/png" href="favicon.png">
     
+    <link rel="preconnect" href="https://s3.tradingview.com">
+    <link rel="dns-prefetch" href="https://s3.tradingview.com">
+
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;700;900&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
@@ -28,8 +31,6 @@
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             line-height: 1.6;
-            
-            /* СОВРЕМЕННЫЙ КРИПТО-ФОН */
             background-image: 
                 radial-gradient(circle at 15% 50%, rgba(255, 184, 0, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 85% 10%, rgba(56, 189, 248, 0.03) 0%, transparent 40%),
@@ -42,17 +43,15 @@
 
         .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; width: 100%; }
 
-        /* ТИКЕР */
         .ticker-header {
             position: fixed; top: 15px; left: 50%; transform: translateX(-50%);
-            width: 95%; max-width: 1100px; height: 50px;
+            width: 95%; max-width: 1100px; height: 52px;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border);
             border-radius: 100px; backdrop-filter: var(--glass);
             z-index: 10000; overflow: hidden;
         }
 
-        /* HERO */
         .hero { padding: 180px 0 80px; text-align: center; }
         .hero h1 {
             font-family: 'Unbounded', sans-serif; font-size: clamp(2.2rem, 7vw, 4.2rem);
@@ -63,45 +62,32 @@
         }
         .hero p { color: var(--text-dim); font-size: clamp(1rem, 3vw, 1.25rem); max-width: 800px; margin: 0 auto; font-weight: 300; }
 
-        /* ПОЧЕМУ МЫ */
-        .why-us { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 120px; }
-        .why-card {
-            background: var(--surface); border: 1px solid var(--border);
-            padding: 40px; border-radius: 30px; backdrop-filter: var(--glass);
-            transition: 0.4s ease;
-        }
+        .why-us { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 80px; }
+        .why-card { background: var(--surface); border: 1px solid var(--border); padding: 40px; border-radius: 30px; backdrop-filter: var(--glass); }
         .why-card h3 { font-family: 'Unbounded', sans-serif; font-size: 16px; color: var(--accent); margin-bottom: 15px; }
         .why-card p { color: var(--text-dim); font-size: 15px; }
 
-        /* LISTING */
-        .listing { display: flex; flex-direction: column; gap: 25px; }
+        .listing { display: flex; flex-direction: column; gap: 25px; margin-bottom: 80px; }
         .card {
             background: rgba(255, 255, 255, 0.02); border: 1px solid var(--border);
             border-radius: 40px; padding: 45px; backdrop-filter: var(--glass);
             display: grid; grid-template-columns: 130px 1fr 280px;
             gap: 45px; align-items: center; position: relative;
-            transition: 0.5s cubic-bezier(0.2, 1, 0.2, 1);
+            transition: 0.4s ease-out;
         }
         .card:hover { border-color: var(--accent); transform: translateY(-5px); }
 
-        /* ЛОГОТИПЫ (Исправлено) */
         .logo-wrap {
-            width: 130px; height: 130px; 
-            background: rgba(255, 255, 255, 0.03); /* Убрали грубый черный */
-            border-radius: 50%; /* Сделали круглыми */
-            border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
-            overflow: hidden;
+            width: 130px; height: 130px; background: rgba(255, 255, 255, 0.04); 
+            border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
         }
-        .logo-wrap img { width: 60%; height: 60%; object-fit: contain; }
+        .logo-wrap img { width: 65%; height: 65%; object-fit: contain; }
 
         .info h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.8rem, 4vw, 32px); margin-bottom: 12px; }
         .info p { margin-bottom: 25px; color: var(--text-dim); }
 
         .tags { display: flex; gap: 10px; flex-wrap: wrap; }
-        .tag {
-            background: rgba(255, 255, 255, 0.05); padding: 8px 16px; 
-            border-radius: 12px; font-size: 13px; font-weight: 700; color: #ccc;
-        }
+        .tag { background: rgba(255, 255, 255, 0.05); padding: 8px 16px; border-radius: 12px; font-size: 13px; font-weight: 700; color: #ccc; }
         .tag b { color: var(--accent); }
 
         .actions { display: flex; flex-direction: column; gap: 12px; }
@@ -111,71 +97,47 @@
             text-align: center; font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 900;
             box-shadow: 0 10px 30px rgba(255, 184, 0, 0.3); transition: 0.3s;
         }
-        .btn-gold:hover { transform: translateY(-3px); filter: brightness(1.1); }
-        
+        .btn-gold:hover { filter: brightness(1.1); transform: scale(1.02); }
         .btn-outline {
-            background: transparent; color: #fff; text-decoration: none;
-            padding: 20px; border-radius: 20px; text-align: center;
-            border: 1px solid var(--border); font-size: 14px; font-weight: 600;
+            background: transparent; color: #fff; text-decoration: none; padding: 20px; border-radius: 20px;
+            text-align: center; border: 1px solid var(--border); font-size: 14px; font-weight: 600;
         }
+
+        /* ТАБЛИЦА СРАВНЕНИЯ (Новое) */
+        .comparison-section { margin-bottom: 100px; }
+        .comparison-section h2 { font-family: 'Unbounded', sans-serif; text-align: center; margin-bottom: 40px; font-size: clamp(1.5rem, 4vw, 32px); }
+        
+        .table-scroll { overflow-x: auto; background: var(--surface); border-radius: 30px; border: 1px solid var(--border); backdrop-filter: var(--glass); }
+        table { width: 100%; border-collapse: collapse; min-width: 800px; }
+        th { font-family: 'Unbounded', sans-serif; font-size: 12px; color: var(--accent); text-align: left; padding: 25px; border-bottom: 1px solid var(--border); text-transform: uppercase; letter-spacing: 1px; }
+        td { padding: 25px; border-bottom: 1px solid var(--border); font-size: 15px; color: var(--text-main); }
+        tr:last-child td { border-bottom: none; }
+        .row-name { font-weight: 800; color: #fff; }
+        .status-yes { color: #10b981; font-weight: 700; }
+        .status-no { color: #f43f5e; font-weight: 700; }
 
         /* FAQ */
-        .faq { padding: 120px 0; width: 100%; }
+        .faq { padding: 100px 0; }
         .faq h2 { font-family: 'Unbounded', sans-serif; text-align: center; margin-bottom: 60px; font-size: clamp(1.8rem, 5vw, 32px); }
-        
-        .faq-item {
-            background: var(--surface); border: 1px solid var(--border);
-            border-radius: 24px; margin-bottom: 15px; overflow: hidden;
-            width: 100%;
-        }
-        
-        summary {
-            padding: 30px; cursor: pointer; list-style: none;
-            display: flex; justify-content: space-between; align-items: center;
-            font-family: 'Unbounded', sans-serif; font-size: clamp(0.9rem, 3vw, 18px); font-weight: 700;
-        }
+        .faq-item { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; margin-bottom: 15px; overflow: hidden; }
+        summary { padding: 30px; cursor: pointer; list-style: none; display: flex; justify-content: space-between; align-items: center; font-family: 'Unbounded', sans-serif; font-size: clamp(0.9rem, 3vw, 18px); font-weight: 700; }
         summary::after { content: '+'; color: var(--accent); font-size: 24px; transition: 0.3s; }
-        details[open] summary::after { transform: rotate(45deg); color: #fff; }
-        
-        .faq-content {
-            padding: 0 30px 30px; color: var(--text-dim);
-            font-size: clamp(0.95rem, 3vw, 18px); line-height: 1.8; border-top: 1px solid var(--border);
-            padding-top: 25px;
-        }
+        details[open] summary::after { transform: rotate(45deg); }
+        .faq-content { padding: 0 30px 30px; color: var(--text-dim); border-top: 1px solid var(--border); padding-top: 25px; line-height: 1.8; }
 
-        footer { padding: 80px 0; text-align: center; border-top: 1px solid var(--border); color: #334155; font-size: 12px; }
+        footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--border); color: #334155; font-size: 12px; }
 
-        /* МОБИЛЬНАЯ АДАПТИВНОСТЬ (Сильно улучшено) */
+        /* МОБИЛКИ */
         @media (max-width: 1000px) {
-            /* Фикс тикера для мобилок - прижимаем к верху и даем высоту под двухстрочный вид */
-            .ticker-header { 
-                top: 0; width: 100%; max-width: 100%; height: 72px; 
-                border-radius: 0; border-left: none; border-right: none; border-top: none; 
-            }
-            
-            .hero { padding-top: 110px; padding-bottom: 40px; }
-            .hero h1 { letter-spacing: -1px; margin-bottom: 15px; }
-            
-            .why-us { margin-bottom: 60px; grid-template-columns: 1fr; }
-            .why-card { padding: 25px; }
-
-            /* Компактные карточки бирж */
-            .card { grid-template-columns: 1fr; text-align: center; padding: 25px 20px; gap: 20px; border-radius: 24px; }
-            .logo-wrap { margin: 0 auto; width: 90px; height: 90px; }
-            .info h2 { font-size: 24px; margin-bottom: 8px; }
-            .info p { margin-bottom: 15px; font-size: 14px; }
-            
-            .tags { justify-content: center; gap: 8px; }
-            .tag { font-size: 12px; padding: 6px 12px; }
-            
-            /* Аккуратные кнопки */
-            .actions { gap: 10px; }
-            .btn-gold, .btn-outline { padding: 16px; font-size: 13px; border-radius: 16px; }
-
+            .ticker-header { top: 0; width: 100%; height: 74px; border-radius: 0; border-top: none; }
+            .hero { padding-top: 120px; padding-bottom: 40px; }
+            .why-us { grid-template-columns: 1fr; margin-bottom: 40px; }
+            .card { grid-template-columns: 1fr; text-align: center; padding: 30px 20px; border-radius: 30px; }
+            .logo-wrap { margin: 0 auto; width: 100px; height: 100px; }
+            .tags { justify-content: center; }
+            .comparison-section { margin-bottom: 60px; }
+            th, td { padding: 15px; font-size: 13px; }
             .faq { padding: 60px 0; }
-            .faq h2 { margin-bottom: 30px; }
-            summary { padding: 20px; font-size: 15px; }
-            .faq-content { padding: 0 20px 20px; padding-top: 15px; font-size: 14px; }
         }
     </style>
 </head>
@@ -192,6 +154,7 @@
                     {"proName": "BINANCE:SOLUSDT", "title": "SOL"},
                     {"proName": "BINANCE:TONUSDT", "title": "TON"}
                 ],
+                "showSymbolLogo": true,
                 "colorTheme": "dark", "isTransparent": true, "displayMode": "adaptive", "locale": "ru"
             }
             </script>
@@ -200,7 +163,7 @@
 
     <header class="container hero">
         <h1>РЕЙТИНГ КРИПТОБИРЖ 2026</h1>
-        <p>Зачем платить больше? Мы проанализировали лучшие криптобиржи и выбрали площадки с минимальными комиссиями, глубокой ликвидностью и полной свободой от блокировок.</p>
+        <p>Анализ лучших площадок с глубокой ликвидностью, минимальными комиссиями и полной свободой от блокировок.</p>
     </header>
 
     <main class="container">
@@ -208,25 +171,24 @@
         <section class="why-us">
             <div class="why-card">
                 <h3>В 3 РАЗА ДЕШЕВЛЕ</h3>
-                <p>Топ криптобирж 2026 года — это площадки, где вы не кормите биржу комиссиями. Экономия на трейдинге до 70% по сравнению с Binance.</p>
+                <p>Экономия на комиссиях до 70% по сравнению с Binance и OKX.</p>
             </div>
             <div class="why-card">
                 <h3>БЕЗ САНКЦИЙ</h3>
-                <p>Наш <strong>рейтинг криптобирж</strong> включает только лояльные площадки. Торгуйте спокойно, не опасаясь внезапных блокировок счетов.</p>
+                <p>Только лояльные площадки. Торгуйте спокойно без риска блокировок.</p>
             </div>
             <div class="why-card">
                 <h3>БЕЗОПАСНОСТЬ 1:1</h3>
-                <p>Только <strong>лучшие криптобиржи</strong> с подтвержденными резервами. Ваши деньги всегда доступны для мгновенного вывода.</p>
+                <p>Биржи с подтвержденными резервами Proof of Reserves.</p>
             </div>
         </section>
 
         <section class="listing">
-            
             <article class="card">
                 <div class="logo-wrap"><img src="bingx.png" alt="BingX"></div>
                 <div class="info">
                     <h2>BingX</h2>
-                    <p>Лидер нашего <strong>топа криптобирж</strong>. Идеально для копитрейдинга и спота. Максимальная ликвидность и лучший бонус для новых игроков.</p>
+                    <p>Лидер топа. Лучший выбор для копитрейдинга и спота. Самый жирный бонус для новых пользователей.</p>
                     <div class="tags">
                         <div class="tag">Бонус: <b>$5125</b></div>
                         <div class="tag">Комиссия: <b>0.02%</b></div>
@@ -243,7 +205,7 @@
                 <div class="logo-wrap"><img src="weex.png" alt="WEEX"></div>
                 <div class="info">
                     <h2>WEEX</h2>
-                    <p>Профессиональный выбор для фьючерсов. Страховой фонд 1000 BTC. Анонимный трейдинг без обязательного KYC.</p>
+                    <p>Профессиональные фьючерсы. Страховой фонд 1000 BTC. Можно торговать без KYC и лишних вопросов.</p>
                     <div class="tags">
                         <div class="tag">Плечо: <b>400x</b></div>
                         <div class="tag">KYC: <b>Нет</b></div>
@@ -260,7 +222,7 @@
                 <div class="logo-wrap"><img src="toobit.png" alt="Toobit"></div>
                 <div class="info">
                     <h2>Toobit</h2>
-                    <p>Премиальный доступ к новым токенам и стейкингу. Высочайший APR на рынке и персональный сервис для крупных трейдеров.</p>
+                    <p>Премиальный доступ к новым токенам. Высокий APR в стейкинге и персональный VIP-сервис.</p>
                     <div class="tags">
                         <div class="tag">Стейкинг: <b>до 30%</b></div>
                         <div class="tag">Пары: <b>800+</b></div>
@@ -272,53 +234,78 @@
                     <a href="https://www.toobit.com/t/cryptoday" class="btn-outline">РЕГИСТРАЦИЯ</a>
                 </div>
             </article>
+        </section>
 
+        <section class="comparison-section">
+            <h2>СРАВНЕНИЕ ХАРАКТЕРИСТИК</h2>
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Биржа</th>
+                            <th>Комиссия (Мейкер)</th>
+                            <th>Плечо макс.</th>
+                            <th>KYC</th>
+                            <th>Резервы 1:1</th>
+                            <th>Особенности</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="row-name">BingX</td>
+                            <td>0.020%</td>
+                            <td>150x</td>
+                            <td>Необязательно</td>
+                            <td class="status-yes">Да</td>
+                            <td>Копитрейдинг №1</td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">WEEX</td>
+                            <td>0.020%</td>
+                            <td>400x</td>
+                            <td class="status-no">Нет</td>
+                            <td class="status-yes">Да</td>
+                            <td>Защита 1000 BTC</td>
+                        </tr>
+                        <tr>
+                            <td class="row-name">Toobit</td>
+                            <td>0.020%</td>
+                            <td>150x</td>
+                            <td>Необязательно</td>
+                            <td class="status-yes">Да</td>
+                            <td>Стейкинг до 30%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section class="faq">
             <div class="container">
                 <h2>ОТВЕТЫ НА ВОПРОСЫ</h2>
-                
                 <details class="faq-item">
                     <summary>Как составляется рейтинг криптобирж 2026?</summary>
-                    <div class="faq-content">
-                        Наш <strong>рейтинг криптобирж</strong> базируется на глубоком техническом анализе. Мы учитываем ликвидность, наличие страховых фондов и скорость вывода. Каждая площадка в нашем топе проходит проверку на прозрачность резервов (Proof of Reserves).
-                    </div>
+                    <div class="faq-content">Наш рейтинг базируется на глубоком техническом анализе. Мы учитываем ликвидность, наличие страховых фондов и скорость вывода. Каждая площадка проходит проверку на прозрачность резервов.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Какая криптобиржа считается лучшей для новичков?</summary>
-                    <div class="faq-content">
-                        В 2026 году <strong>лучшие криптобиржи</strong> — это те, которые сочетают простоту и безопасность. BingX лидирует благодаря интуитивному интерфейсу и системе копитрейдинга.
-                    </div>
+                    <div class="faq-content">В 2026 году лучшие криптобиржи — те, что сочетают простоту и безопасность. BingX лидирует благодаря интуитивному интерфейсу и системе копитрейдинга.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Где самые низкие торговые комиссии в 2026 году?</summary>
-                    <div class="faq-content">
-                        Трейдеры переходят на BingX или WEEX, так как здесь комиссии на фьючерсы в несколько раз ниже. Наш <strong>топ криптобирж</strong> сфокусирован на максимальной выгоде для трейдера.
-                    </div>
+                    <div class="faq-content">Трейдеры переходят на BingX или WEEX, так как здесь комиссии на фьючерсы в несколько раз ниже. Наш топ сфокусирован на максимальной выгоде.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Можно ли торговать без верификации (KYC)?</summary>
-                    <div class="faq-content">
-                        Да, в нашем списке такие биржи, как WEEX, позволяют сохранять анонимность, что критически важно в 2026 году для защиты персональных данных.
-                    </div>
+                    <div class="faq-content">Да, в нашем списке такие биржи, как WEEX, позволяют сохранять анонимность, что критически важно для защиты персональных данных.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Как работают P2P переводы на этих площадках?</summary>
-                    <div class="faq-content">
-                        <strong>Лучшие криптобиржи</strong> поддерживают развитые P2P-платформы. Вы можете легко купить или продать криптовалюту за фиат через карты любых банков с нулевой комиссией.
-                    </div>
+                    <div class="faq-content">Лучшие криптобиржи поддерживают развитые P2P-платформы. Вы можете купить или продать криптовалюту за фиат через карты любых банков с нулевой комиссией.</div>
                 </details>
-
                 <details class="faq-item">
                     <summary>Безопасно ли хранить деньги на этих биржах?</summary>
-                    <div class="faq-content">
-                        Все площадки в <strong>рейтинге криптобирж</strong> имеют страховые фонды и многоуровневую защиту. Однако для долгосрочного хранения крупных сумм мы всегда советуем холодные кошельки.
-                    </div>
+                    <div class="faq-content">Все площадки имеют страховые фонды и многоуровневую защиту. Однако для долгосрочного хранения крупных сумм мы советуем холодные кошельки.</div>
                 </details>
             </div>
         </section>
